@@ -2,16 +2,23 @@
 import Badge from "../components/Badge.astro";
 ---
 
-<div class="w-full py-44 max-auto lg:w-[740px]">
+<div class="flex flex-col pt-0 lg:w-[740px]">
   <div>
-    <h1 class="text-5xl font-bold flex justify-start">
-      Hola! Soy Manuel Barrios <Badge>Open to work</Badge>
-    </h1>
-    <h2 class="py-10 text-2xl flex justify-start">
-      Soy Fullstack Software Developer con +3 años de experiencia en la
-      programación web. Cuento con una variedad de habilidades blandas que me
-      permiten trabajar de manera efectiva para alcanzar las metas de cada
-      proyecto que me asignan.
-    </h2>
+    <img
+      src="/src/img/yo.jpeg"
+      alt="Manuel Barrios"
+      class="w-[230px] h-[400px] rounded-full mx-auto my-5 justify-center lg:flex-row"
+    />
+    <div class="flex flex-col max-w-screen-xl">
+      <h1 class="text-5xl text-center font-bold lg:flex-row">
+        Hola! Soy Manuel Barrios <Badge>Open to work</Badge>
+      </h1>
+      <h2 class="py-10 text-2xl text-justify">
+        Soy Fullstack Software Developer con +3 años de experiencia en la
+        programación web. Cuento con una variedad de habilidades blandas que me
+        permiten trabajar de manera efectiva para alcanzar las metas de cada
+        proyecto que me asignan.
+      </h2>
+    </div>
   </div>
 </div>
