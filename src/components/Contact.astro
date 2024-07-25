@@ -1,0 +1,61 @@
+---
+const social = {
+  logos: [
+    {
+      name: "linkedin",
+      url: "https://www.linkedin.com/in/manuel-b-76870287/",
+      src: "/src/img/linkedin.svg",
+      alt: "linkedin",
+    },
+    {
+      name: "github",
+      url: "https://github.com/ManuPro14",
+      src: "/src/img/github.svg",
+      alt: "github",
+    },
+    {
+      name: "whatsapp",
+      url: "https://wa.me/573043544404",
+      src: "/src/img/whatsapp.svg",
+      alt: "whatsapp",
+    },
+  ],
+};
+---
+
+<section class="justify-center items-center pt-8 text-gray-200 mt-20">
+  <h1 class="flex justify-center text-5xl font-semibold">Contacto</h1>
+
+  <div
+    id="botones de redes sociales "
+    class="flex justify-center items-center space-x-4 py-8"
+  >
+    <button class="w-16 h-16">
+      <a href={social.logos[0].url}>
+        <img
+          src={social.logos[0].src}
+          alt={social.logos[0].alt}
+          class="w-16 h-16"
+        />
+      </a>
+    </button>
+    <button class="w-16 h-16">
+      <a href={social.logos[1].url}>
+        <img
+          src={social.logos[1].src}
+          alt={social.logos[1].alt}
+          class="w-16 h-16"
+        />
+      </a>
+    </button>
+    <button class="w-16 h-16">
+      <a href={social.logos[2].url}>
+        <img
+          src={social.logos[2].src}
+          alt={social.logos[2].alt}
+          class="w-16 h-16"
+        />
+      </a>
+    </button>
+  </div>
+</section>
