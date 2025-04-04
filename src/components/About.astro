@@ -1,25 +1,28 @@
 ---
-
+const content = {
+  title: "Hola! Soy Manuel Barrios",
+  description:
+    "Fullstack Web Developer con +3 años de experiencia en la programación web.",
+};
 ---
 
 <section
-  class="flex flex-col pt-0 justify-center items-center text-gray-200 mt-20"
+  class="flex flex-col pt-0 justify-center items-center text-gray-200 mt-4 lg:mt-20"
 >
-  <div class="">
+  <div
+    class="flex lg:flex-row flex-col justify-center items-center text-gray-200 mt-20 gap-4"
+  >
     <img
       src="/img/yo.jpeg"
       alt="Manuel Barrios"
-      class="w-[230px] h-[400px] rounded-full mx-auto my-5 justify-center lg:flex-row"
+      class="w-[230px] h-[400px] rounded-full mx-auto my-5 justify-center lg:flex-row hover:scale-125 transition-transform duration-500 ease-in-out"
     />
     <div class="flex flex-col max-w-screen-xl">
-      <h1 class="text-5xl text-center font-bold lg:flex-row">
-        Hola! Soy Manuel Barrios
+      <h1 class="text-5xl text-center font-semibold lg:flex-row">
+        {content.title}
       </h1>
-      <h2 class="py-10 text-2xl text-justify max-w-screen-md">
-        FrontEnd Software Developer con +3 años de experiencia en la
-        programación web. Cuento con una variedad de habilidades blandas que me
-        permiten trabajar de manera efectiva para alcanzar las metas de cada
-        proyecto que se me asigna.
+      <h2 class="py-10 text-2xl max-w-screen-md text-center">
+        {content.description}
       </h2>
     </div>
   </div>

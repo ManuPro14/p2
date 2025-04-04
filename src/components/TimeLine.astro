@@ -1,0 +1,116 @@
+---
+import { timeline } from "../services/timeline";
+import { Eye } from "@lucide/astro";
+---
+
+<section class="mt-20 px-4">
+  <h2 class="text-center text-4xl sm:text-5xl font-semibold mb-12 text-gray-200">
+    Experiencia
+  </h2>
+
+  <div class="relative border-l border-gray-400 dark:border-gray-600 max-w-4xl mx-auto" id="timelineContainer">
+    {timeline.map((item, index) => (
+      <div class="mb-10 ml-6 relative">
+        <!-- Círculo Azul -->
+        <span class="absolute top-3 -left-8 w-4 h-4 bg-blue-500 rounded-full border border-white"></span>
+
+        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+          <!-- Contenido -->
+          <div class="flex-1 min-w-0">
+            <h3 class="text-lg sm:text-xl font-bold text-white">{item.date}</h3>
+            <h4 class="text-base sm:text-lg font-semibold text-gray-300 mt-1">{item.title}</h4>
+            <p class="text-sm sm:text-base text-gray-400 mt-2">{item.location}</p>
+          </div>
+
+          <!-- Botón Ojo -->
+          <div class="flex-shrink-0">
+            <button
+              type="button"
+              class="p-2 rounded-full  transition-colors"
+              aria-label="Ver detalles"
+              data-index={index}
+            >
+              <Eye class="w-6 h-6 sm:w-8 sm:h-8 text-gray-400 hover:scale-110 hover:text-gray-200 transition-transform duration-300 ease-in-out " />
+            </button>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Modal -->
+  <div
+    id="modalOverlay"
+    class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 items-center justify-center px-4"
+  >
+    <div
+      class="bg-white text-gray-800 rounded-xl max-w-2xl w-full sm:w-[90%] p-6 relative animate-fadeIn max-h-[90vh] overflow-y-auto shadow-xl"
+    >
+      <button
+        id="closeModal"
+        class="absolute top-2 right-4 text-2xl font-bold text-gray-600 hover:text-red-500"
+      >
+        ×
+      </button>
+      <h2 id="modalTitle" class="text-2xl sm:text-3xl font-bold mb-4"></h2>
+      <ul id="modalDetails" class="list-disc list-inside text-gray-700 text-sm sm:text-base space-y-2"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- JSON safely injectado -->
+<script type="application/json" id="timeline-data" set:html={JSON.stringify(timeline).replace(/</g, '\\u003c')}></script>
+
+<script type="module">
+  const data = JSON.parse(document.getElementById("timeline-data").textContent);
+
+  const timelineContainer = document.getElementById("timelineContainer");
+  const modalOverlay = document.getElementById("modalOverlay");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalDetails = document.getElementById("modalDetails");
+
+  // Escuchamos todos los botones de ojo
+  timelineContainer.querySelectorAll("button[data-index]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const index = btn.getAttribute("data-index");
+      const exp = data[index];
+
+      modalTitle.textContent = exp.title;
+
+      modalDetails.innerHTML = "";
+      exp.details.split("•").filter(text => text.trim()).forEach(detail => {
+        const li = document.createElement("li");
+        li.textContent = detail.trim();
+        modalDetails.appendChild(li);
+      });
+
+      modalOverlay.classList.remove("hidden");
+      modalOverlay.classList.add("flex");
+    });
+  });
+
+  // Cerrar modal
+  document.getElementById("closeModal").addEventListener("click", () => {
+    modalOverlay.classList.add("hidden");
+    modalOverlay.classList.remove("flex");
+  });
+
+  // Cerrar modal clic fuera
+  modalOverlay.addEventListener("click", (e) => {
+    if (e.target.id === "modalOverlay") {
+      modalOverlay.classList.add("hidden");
+      modalOverlay.classList.remove("flex");
+    }
+  });
+</script>
+
+<style is:global>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.25s ease-out;
+  }
+</style>

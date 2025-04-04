@@ -1,93 +1,30 @@
 ---
-const products = {
-  title: "Proyectos",
-  items: [
-    {
-      title: "Clon Minecraft",
-      description: "Clon del juego Minecraft en ReactJS, CSS y HTML",
-      image: "/img/manucraft.jpg",
-      tecnologies: ["HTML", "CSS", "JavaScript"],
-      link: "https://manupro14.github.io/manucraft/",
-    },
-    {
-      title: "Landing Page",
-      description: "Landing page de la empresa MABANY GROUP",
-      image: "/img/Mabany.jpg",
-      tecnologies: ["Astro", "Tailwind", "TypeScript"],
-      link: "https://visionary-klepon-e15007.netlify.app/",
-    },
-    {
-      title: "Ecommerce",
-      description: "Se hace ecommerce con Svelte, Tailwind y TypeScript",
-      image: "/img/Ecommerce.jpg",
-      tecnologies: ["Svelte", "Tailwind", "TypeScript", "MongoDB"],
-      link: "https://github.com/ManuPro14/ecommerce",
-    },
-  ],
-};
+import { projects } from "../services/projects.ts";
 ---
 
 <section class="h-auto mt-20">
-  <h1 class="text-center text-5xl p-10 text-gray-200">Proyectos</h1>
+  <h1 class="text-center text-5xl p-10 text-gray-200">{projects.title}</h1>
   <div class="flex justify-center flex-wrap">
-    <div
-      class="flex flex-col justify-between items-center p-4 text-center m-4 bg-gray-300 max-w-[350px] border-gray-600 border-2 rounded-lg"
-    >
-      <a href={products.items[1].link}>
-        <img
-          src={products.items[1].image}
-          class="w-full h-80 object-cover text-gray-800 object-center rounded-lg border-2 border-gray-400"
-          alt="Clon Minecraft"
-        />
-        <div>
-          <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 m-4">
-            {products.items[1].title}
-          </h2>
-          <p class="text-sm text-gray-600 dark:text-gray-400 m-4 font-semibold">
-            {products.items[1].description}
-          </p>
+    {
+      projects.items.map((project) => (
+        <div class="flex flex-col justify-between items-center p-4 text-center m-4 bg-gray-200 bg-opacity-60 max-w-[350px] border-gray-600 border-2 rounded-3xl hover:scale-110 transition-transform duration-500 ease-in-out gap-8">
+          <a href={project.link} target="_blank" rel="noopener noreferrer">
+            <img
+              src={project.image}
+              class="w-full h-80 object-cover text-gray-800 object-center rounded-lg border-2 border-gray-400"
+              alt={project.title}
+            />
+            <div>
+              <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 m-4">
+                {project.title}
+              </h2>
+              <p class="text-sm text-gray-600 dark:text-gray-400 m-4 font-semibold">
+                {project.description}
+              </p>
+            </div>
+          </a>
         </div>
-      </a>
-    </div>
-
-    <div
-      class="flex flex-col justify-between items-center p-4 text-center m-4 bg-gray-300 max-w-[350px] border-gray-600 border-2 rounded-lg"
-    >
-      <a href={products.items[2].link}>
-        <img
-          src={products.items[2].image}
-          class="w-full h-80 object-cover text-gray-800 object-center rounded-lg border-2 border-gray-400"
-          alt="Clon Minecraft"
-        />
-        <div>
-          <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 m-4">
-            {products.items[2].title}
-          </h2>
-          <p class="text-sm text-gray-600 dark:text-gray-400 m-4 font-semibold">
-            {products.items[2].description}
-          </p>
-        </div>
-      </a>
-    </div>
-
-    <div
-      class="flex flex-col justify-between items-center p-4 text-center m-4 bg-gray-300 max-w-[350px] border-gray-600 border-2 rounded-lg"
-    >
-      <a href={products.items[0].link}>
-        <img
-          src={products.items[0].image}
-          class="w-full h-80 object-cover text-gray-800 object-center rounded-lg border-2 border-gray-400"
-          alt="Clon Minecraft"
-        />
-        <div>
-          <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 m-4">
-            {products.items[0].title}
-          </h2>
-          <p class="text-sm text-gray-600 dark:text-gray-400 m-4 font-semibold">
-            {products.items[0].description}
-          </p>
-        </div>
-      </a>
-    </div>
+      ))
+    }
   </div>
 </section>
